@@ -1,0 +1,435 @@
+:root {
+  --bg-light: rgb(245, 248, 255);
+  --surface-light: #ffffff;
+  --surface-strong-light: #dbe6f5;
+  --text-light: #111827;
+  --text-muted-light: #5b6d8d;
+  --accent-light: #3b82f6;
+
+  --bg-dark: rgb(16, 19, 26);
+  --surface-dark: #16202b;
+  --surface-strong-dark: #1f3249;
+  --text-dark: #edf2ff;
+  --text-muted-dark: #9bb2d3;
+  --accent-dark: #67d5ff;
+  --success: #6ee7b7;
+  --warning: #f9a826;
+  --danger: #fb7185;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: var(--text-dark);
+  background: radial-gradient(circle at top, #dbeafe 0%, #f8fafc 56%);
+}
+
+body.night-mode {
+  color: var(--text-dark);
+  background: radial-gradient(circle at top, #18314a 0%, #0b1017 55%);
+}
+
+body.night-mode .game-card {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 19, 26, 0.95),
+    rgba(20, 29, 42, 0.98)
+  );
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.day-mode .game-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(241, 245, 255, 0.95)
+  );
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.app-shell {
+  width: min(760px, 100%);
+}
+
+.game-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+}
+
+body.night-mode .game-header h1,
+body.night-mode .game-header p,
+body.night-mode .game-controls label,
+body.night-mode .settings-panel label,
+body.night-mode .feedback-panel p,
+body.night-mode .score-panel,
+body.night-mode .status-panel,
+body.night-mode .marker {
+  color: var(--text-dark);
+}
+
+body.day-mode .game-header h1,
+body.day-mode .game-header p,
+body.day-mode .game-controls label,
+body.day-mode .settings-panel label,
+body.day-mode .feedback-panel p,
+body.day-mode .score-panel,
+body.day-mode .status-panel,
+body.day-mode .marker {
+  color: var(--text-light);
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.game-header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+.game-header p {
+  margin: 12px auto 0;
+  max-width: 36rem;
+  color: var(--text-muted-dark);
+}
+
+.settings-panel,
+.status-panel,
+.game-controls,
+.feedback-panel,
+.score-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.settings-panel {
+  margin-bottom: 24px;
+}
+
+.field-row {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-weight: 600;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted-dark);
+}
+
+.checkbox-label input {
+  width: auto;
+  margin: 0;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  color: #111827;
+}
+
+body.night-mode select,
+body.night-mode input {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-dark);
+}
+
+body.night-mode select option {
+  color: var(--text-light);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#start-button {
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+}
+
+#stop-button {
+  background: linear-gradient(135deg, #dc2626, #f87171);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(56, 189, 248, 0.2);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.clock-wrapper {
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+}
+
+.clock {
+  position: relative;
+  width: min(360px, 90vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.04),
+      transparent 30%
+    ),
+    var(--surface-dark);
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+body.day-mode .clock {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(16, 24, 40, 0.08), transparent 30%),
+    radial-gradient(circle at center, rgba(16, 24, 40, 0.04), transparent 30%),
+    #f8fafc;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(15, 23, 42, 0.04),
+    0 18px 48px rgba(15, 23, 42, 0.14);
+}
+
+.clock::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.clock-face {
+  position: absolute;
+  inset: 0;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--rotation));
+}
+
+.marker::before {
+  content: "";
+  width: var(--marker-width, 2px);
+  height: var(--marker-height, 18px);
+  border-radius: 999px;
+  transform: translateY(170px);
+}
+
+body.night-mode .marker::before {
+  background: var(--bg-light);
+}
+
+body.day-mode .marker::before {
+  background: var(--bg-dark);
+}
+
+.marker-label {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(calc(-1 * var(--rotation)));
+  font-size: 0.92rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.marker.number-marker::before {
+  --marker-width: 0;
+  --marker-height: 0;
+}
+
+.marker.number-marker .marker-label {
+  top: 20px;
+}
+
+.minute-dot {
+  position: absolute;
+  top: calc(49% + 2px);
+  left: calc(49% + 2px);
+  transform-origin: center center;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  transform: rotate(var(--rotation)) translateY(170px);
+}
+
+body.night-mode .minute-dot {
+  background: var(--bg-light);
+}
+
+body.day-mode .minute-dot {
+  background: var(--bg-dark);
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: center 100%;
+  transition: transform 0.5s ease;
+}
+
+.hour {
+  width: 8px;
+  height: 26%;
+  background: linear-gradient(to top, #38bdf8, rgba(255, 255, 255, 0.9));
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+body.day-mode .hour {
+  background: linear-gradient(to top, #38bdf8, var(--bg-dark));
+}
+
+body.night-mode .hour {
+  background: linear-gradient(to top, #38bdf8, var(--bg-light));
+}
+
+.minute {
+  width: 6px;
+  height: 38%;
+  background: linear-gradient(to top, #7dd3fc, rgba(255, 255, 255, 0.9));
+  border-radius: 10px;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+body.day-mode .minute {
+  background: linear-gradient(to top, #7dd3fc, var(--bg-dark));
+}
+
+body.night-mode .minute {
+  background: linear-gradient(to top, #7dd3fc, var(--bg-light));
+}
+
+.second {
+  width: 3px;
+  height: 44%;
+  background: #fb7185;
+  border-radius: 999px;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.dial.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff, rgba(255, 255, 255, 0.22));
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.status-panel {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.status-panel div {
+  color: var(--text-muted-dark);
+}
+
+.game-controls {
+  margin-bottom: 20px;
+}
+
+.feedback-panel {
+  min-height: 56px;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.feedback-panel p {
+  margin: 0;
+  color: var(--text-muted-dark);
+}
+
+.score-panel {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--text-muted-dark);
+  font-weight: 600;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .status-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .game-card {
+    padding: 22px;
+  }
+  .controls-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock Challenge</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="night-mode">
+    <main class="app-shell">
+      <section class="game-card">
+        <header class="game-header">
+          <h1>Clock Challenge</h1>
+          <p>
+            Choose a level, then read the analog clock and enter the 24-hour
+            time.
+          </p>
+        </header>
+
+        <section class="settings-panel">
+          <div class="field-row">
+            <label for="level-select">Level</label>
+            <select id="level-select">
+              <option value="1">Level 1 – full hours only</option>
+              <option value="2">Level 2 – half hours</option>
+              <option value="3">Level 3 – quarter hours</option>
+              <option value="4">Level 4 – every 5 minutes</option>
+              <option value="5">Level 5 – any minute</option>
+              <option value="6">Level 6 – roman numerals</option>
+              <option value="7">Level 7 – major dashes</option>
+              <option value="8">Level 8 – 5-minute ticks</option>
+              <option value="9">Level 9 – empty dial</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <label for="pro-mode-checkbox">PRO mode</label>
+            <label class="checkbox-label">
+              <input id="pro-mode-checkbox" type="checkbox" disabled />
+              Include seconds
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label for="mode-select">Game mode</label>
+            <select id="mode-select">
+              <option value="normal">Standard mode</option>
+              <option value="timeout">Timeout mode</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <label for="rounds-select">Max rounds</label>
+            <select id="rounds-select">
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <label for="timeout-select">Timeout duration</label>
+            <select id="timeout-select" disabled>
+              <option value="30">30 sec</option>
+              <option value="60">1 min</option>
+              <option value="90">1.5 min</option>
+              <option value="120">2 mins</option>
+              <option value="180">3 mins</option>
+              <option value="240">4 mins</option>
+              <option value="300">5 mins</option>
+            </select>
+          </div>
+
+          <button id="start-button" type="button">Start game</button>
+        </section>
+
+        <div class="clock-wrapper">
+          <div class="clock" id="clock">
+            <div class="clock-face" id="clock-face"></div>
+            <div class="dial center"></div>
+            <div class="hand hour" id="hour-hand"></div>
+            <div class="hand minute" id="minute-hand"></div>
+            <div class="hand second" id="second-hand"></div>
+          </div>
+        </div>
+
+        <section class="status-panel">
+          <div>
+            <strong>Elapsed:</strong> <span id="elapsed-display">00:00</span>
+          </div>
+          <div id="countdown-container" class="hidden">
+            <strong>Remaining:</strong> <span id="countdown-display">20</span>s
+          </div>
+          <div>
+            <strong>Board:</strong> <span id="board-label">Arabic numbers</span>
+          </div>
+        </section>
+
+        <div class="game-controls">
+          <label id="input-label" for="time-input">Enter HHMM</label>
+          <input
+            id="time-input"
+            type="text"
+            placeholder="e.g. 0725"
+            autocomplete="off"
+            inputmode="numeric"
+            disabled
+          />
+          <div class="controls-row">
+            <button id="submit-button" type="button" disabled>
+              Check answer
+            </button>
+            <button id="next-button" type="button" disabled>Next clock</button>
+            <button id="stop-button" type="button" disabled>Stop</button>
+          </div>
+        </div>
+
+        <section class="feedback-panel" id="feedback-panel">
+          <p id="feedback-text">Pick a level and start the game.</p>
+        </section>
+
+        <footer class="score-panel">
+          <div>Round: <span id="round-count">0</span></div>
+          <div>Score: <span id="score-count">0</span></div>
+        </footer>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
